@@ -1,7 +1,7 @@
-name: Example
+name: CI
 on: [push]
+
 jobs:
-  
   uv-example:
     name: python
     runs-on: ubuntu-latest
@@ -15,8 +15,11 @@ jobs:
       - name: Set up Python
         run: uv python install
 
+      - name: Install the project
+        run: uv sync --all-extras --dev
+
       - name: Run tools
-        uses: uv run pre-commit run -a
-               
+        run: uv run pre-commit run -a
+
       - name: Run tests
-        uses: uv run python -m unittest
+        run: uv run python -m unittest
