@@ -1,13 +1,7 @@
 name: Example
 on: [push]
 jobs:
-  uv-tools:
-    name: tools
-    runs-on : uv run pre-commit run -a
-  uv-tests:
-    name: tests
-    runs-on : uv run python -m unittest
-
+  
   uv-example:
     name: python
     runs-on: ubuntu-latest
@@ -20,3 +14,9 @@ jobs:
 
       - name: Set up Python
         run: uv python install
+
+      - name: Run tools
+        uses: uv run pre-commit run -a
+               
+      - name: Run tests
+        uses: uv run python -m unittest
