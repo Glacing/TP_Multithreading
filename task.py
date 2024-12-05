@@ -34,4 +34,6 @@ class Task:
         return newTask
 
     def __eq__(self, other: "Task"):
-        return self.a == other.a and self.b == other.b
+        return (np.array(self.a) == np.array(other.a)).all() and (
+            np.array(self.b) == np.array(other.b)
+        ).all()
