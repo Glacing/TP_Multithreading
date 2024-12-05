@@ -22,7 +22,7 @@ class Task:
         self.time = time.perf_counter() - start
 
     def to_json(self):
-        jsonValue = {"a": self.a, "b": self.b}
+        jsonValue = {"a": np.array(self.a), "b": np.array(self.b)}
         return json.dumps(jsonValue)
 
     @classmethod
