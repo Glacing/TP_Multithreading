@@ -25,7 +25,7 @@ class Task:
         jsonValue = {"a": self.a.tolist(), "b": self.b.tolist()}
         return json.dumps(jsonValue)
 
-    @classmethod
+    @staticmethod
     def from_json(text: str):
         dictValue = json.loads(text)
         newTask = Task()
