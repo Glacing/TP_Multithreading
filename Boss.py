@@ -1,4 +1,4 @@
-from QueueManager import QueueManager
+from QueueManager import QueueClient
 from task import Task
 import time
 import queue
@@ -11,7 +11,7 @@ class Boss:
         self.result_queue = result_queue
 
     def create_tasks(self, number):
-        task = Task(identifier=number)
+        task = Task(number, 10)
         print(f"[Boss] Task {task.identifier} added to queue.")
         self.task_queue.put(task)
 
@@ -27,15 +27,8 @@ class Boss:
 
 
 if __name__ == "__main__":
-    QueueManager.register("get_task_queue")
-    QueueManager.register("get_result_queue")
-    manager = QueueManager(address=("localhost", 50000), authkey=b"secret")
-    manager.connect()
-
-    task_queue = manager.get_task_queue()
-    result_queue = manager.get_result_queue()
-
-    boss = Boss(task_queue, result_queue)
+    client = QueueClient()
+    boss = Boss(client.task_queue, client.result_queue)
 
     result_thread = threading.Thread(target=boss.monitor_results, daemon=True)
     result_thread.start()

@@ -1,4 +1,4 @@
-from QueueManager import QueueManager
+from QueueManager import QueueClient
 import time
 import queue
 
@@ -23,13 +23,6 @@ class Minion:
 
 
 if __name__ == "__main__":
-    QueueManager.register("get_task_queue")
-    QueueManager.register("get_result_queue")
-    manager = QueueManager(address=("localhost", 50000), authkey=b"secret")
-    manager.connect()
-
-    task_queue = manager.get_task_queue()
-    result_queue = manager.get_result_queue()
-
-    minion = Minion(task_queue, result_queue, "Minion-1")
+    client = QueueClient()
+    minion = Minion(client.task_queue, client.result_queue, "Minion-1")
     minion.work()
