@@ -22,7 +22,12 @@ class Task:
         self.time = time.perf_counter() - start
 
     def to_json(self):
-        jsonValue = {"a": self.a.tolist(), "b": self.b.tolist()}
+        jsonValue = {
+            "a": self.a.tolist(),
+            "b": self.b.tolist(),
+            "x": self.x.tolist(),
+            "time": self.time,
+        }
         return json.dumps(jsonValue)
 
     @staticmethod
@@ -31,9 +36,14 @@ class Task:
         newTask = Task()
         newTask.a = dictValue["a"]
         newTask.b = dictValue["b"]
+        newTask.x = dictValue["x"]
+        newTask.time = dictValue["time"]
         return newTask
 
     def __eq__(self, other: "Task"):
-        return (np.array(self.a) == np.array(other.a)).all() and (
-            np.array(self.b) == np.array(other.b)
-        ).all()
+        return (
+            (np.array(self.a) == np.array(other.a)).all()
+            and (np.array(self.b) == np.array(other.b)).all()
+            and (np.array(self.x) == np.array(other.x)).all()
+            and self.time == other.time
+        )
