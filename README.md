@@ -21,4 +21,3 @@ Tâches réalisées en python :
 [Minion-1] Task 2 done in 0.0220s.  
 [Minion-1] Task 3 done in 0.0198s.  
 [Minion-1] Task 4 done in 0.0212s.  
-
