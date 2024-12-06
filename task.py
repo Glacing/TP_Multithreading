@@ -27,6 +27,7 @@ class Task:
             "b": self.b.tolist(),
             "x": self.x.tolist(),
             "time": self.time,
+            "identifier": self.identifier,
         }
         return json.dumps(jsonValue)
 
@@ -34,6 +35,7 @@ class Task:
     def from_json(text: str):
         dictValue = json.loads(text)
         newTask = Task()
+        newTask.identifier = dictValue["identifier"]
         newTask.a = dictValue["a"]
         newTask.b = dictValue["b"]
         newTask.x = dictValue["x"]

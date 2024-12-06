@@ -11,7 +11,7 @@ class Boss:
         self.result_queue = result_queue
 
     def create_tasks(self, number):
-        task = Task(number, 10)
+        task = Task(number, 1000)
         print(f"[Boss] Task {task.identifier} added to queue.")
         self.task_queue.put(task)
 
